@@ -1,0 +1,22 @@
+
+.form{
+    display: flex;
+    height: 200px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .button {
+    width: 320px;
+    padding: 14px 36px;
+    font-size: 18px;
+    background-color: inherit;
+    color:inherit;
+    outline: none;
+    border:1px solid #ffffff60;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

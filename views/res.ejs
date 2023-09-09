@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/global.css" />
+    <title>Text2Image</title>
+  </head>
+  <body>
+    <div class="img page aligned-center">
+        <% items.forEach(item => { %>
+        <img src=<%=item.image_resource_url%> height="475px" width="475px"/>
+        <% }) %>
+        <button class="button"onclick="location.href='/'">Back</button>
+    </div>
+  </body>
+</html>

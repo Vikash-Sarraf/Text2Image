@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/global.css" />
+    <title>Text2Image</title>
+  </head>
+  <body>
+    <div class="page aligned-center">
+      <form action="/" method="post">
+        <div class="form">
+          <label for="prompt">Enter your Prompt:</label>
+          <div class="">
+            <select name="lighting">
+              <option value="">Select Lighting</option>
+              <option value=" in backlit lighting">Backlit</option>
+              <option value=" in mood lighting">Mood Lighting</option>
+              <option value=" in glowing lighting">Glowing</option>
+              <option value=" in shimmering lighting">Shimmering</option>
+              <option value=" in polished lighting">Polished</option>
+              <option value=" in luminous lighting">Luminous</option>
+              <option value=" in chiaroscuro lighting">Chiaroscuro</option>
+              <option value=" in bioluminescent lighting">
+                Bioluminescent
+              </option>
+              <option value=" in holographic lighting">Holographic</option>
+            </select>
+            <select name="artstyle">
+              <option value="">Select Art Style</option>
+              <option value=" ,illustration style">Illustration</option>
+              <option value=", pencil drawing style">Pencil Drawing</option>
+              <option value=" ,pixar style">Pixar</option>
+              <option value=" ,cyberpunk style">Cyberpunk</option>
+              <option value=" ,realism style">Realism</option>
+              <option value=" ,studio ghibli style">Studio Ghibli</option>
+              <option value=" ,watercolor style">Watercolor</option>
+              <option value=" ,architechture design style">
+                Architectural design
+              </option>
+              <option value=" ,neo-realism style">Neo-realism</option>
+              <option value=" ,pixel art style">Pixel Art</option>
+            </select>
+            <select name="frame">
+              <option value="">Select Framing</option>
+              <option value=" , close-up">Close-up</option>
+              <option value=" , bird's eye view">Bird's eye view</option>
+              <option value=" , wide angle shot">Wide angle shot</option>
+              <option value=" , cinematic angle">Cinematic angle</option>
+              <option value=" , framed by architechture">
+                Framed by architechture
+              </option>
+              <option value=" dramatic silhouette">Dramatic silhouette</option>
+            </select>
+            <select name="time">
+              <option value="">Select Time of Day</option>
+              <option value=" in the morning">Morning</option>
+              <option value=" in the afternoon">Afternoon</option>
+              <option value=" in the evening">Evening</option>
+              <option value=" at night">Night</option>
+            </select>
+            <select name="color">
+              <option value="">Select Color Palette</option>
+              <option value=" bright and vibrant color palette">
+                Bright and Vibrant
+              </option>
+              <option value=" moody and dramatic color palette">
+                Moody and Dramatic
+              </option>
+              <option value=" pastel and soft color palette">
+                Pastel and Soft
+              </option>
+              <option value=" earthy and natural color palette">
+                Earthy and Natural
+              </option>
+              <option value=" monochromatic color palette">
+                Monochromatic
+              </option>
+              <option value=" dark and grim color palette">
+                Dark and Grim
+              </option>
+            </select>
+            <select name="inspiration">
+              <option value="">Select Inspiration</option>
+              <option value=", in the style of Pablo Picasso">
+                Pablo Picasso
+              </option>
+              <option value=", in the style of Max Ernst">Max Ernst</option>
+              <option value=", in the style of Jackson Pollock">
+                Jackson Pollock
+              </option>
+              <option value=", in the style of Salvador Dali">
+                Salvador Dali
+              </option>
+              <option value=", in the style of Vincent van Gogh">
+                Vincent van Gogh
+              </option>
+              <option value=", in the style of Mattias Adolfsso">
+                Mattias Adolfsso
+              </option>
+              <option value=", in the style of Wassily Kandinsky">
+                Wassily Kandinsky
+              </option>
+              <option value=", in the style of Leonardo da Vinci">
+                Leonardo da Vinci
+              </option>
+            </select>
+          </div>
+          <textarea
+            rows="4"
+            cols="50"
+            id="prompt"
+            type="texta"
+            name="prompt"
+          ></textarea>
+          <select id="provider" name="provider" required>
+            <option value="openai">OpenAI</option>
+            <option value="deepai">DeepAI</option>
+            <option value="stabilityai">StabilityAI</option>
+            <option value="replicate">Replicate</option>
+            <option value="clipdropai">ClipDrop AI</option>
+            <option value="stablediffusion">Stable Diffusion</option>
+          </select>
+          <select name="resolution" required>
+            <option value="512x512">512x512</option>
+            <option value="1024x1024">1024x1024</option>
+          </select>
+          <button class="button" type="submit">Go</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
