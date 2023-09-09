@@ -14,7 +14,6 @@ const app = express();
 app.use(express.json());    //enable parsing middleware for requests
 app.use(express.urlencoded());
 app.use(express.static("public"))
-app.set("view engine","ejs");
 app.use(cors({origin:['http://localhost:3000'],credentials:true}));
 app.use(fileUpload());
 
