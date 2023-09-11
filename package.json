@@ -24,6 +24,7 @@
     "mongoose": "^7.5.0",
     "node-fetch": "^3.3.2",
     "openai": "^4.0.1",
+    "replicate": "^0.17.0",
     "request": "^2.88.2"
   }
 }
