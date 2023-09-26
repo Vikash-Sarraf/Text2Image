@@ -1,0 +1,45 @@
+html,
+body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  color: #fff;
+  background-color: #1d1d1d;
+  overflow: hidden;
+}
+
+.page {
+    height: 100%;
+    background-color: #1d1d1d;
+    padding: 20px;
+  }
+  
+  .aligned-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  
+  }
+
+  .button {
+    width: 320px;
+    padding: 14px 36px;
+    font-size: 18px;
+    background-color: inherit;
+    color:inherit;
+    outline: none;
+    border:1px solid #ffffff60;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form{
+  display: flex;
+  height: 200px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
