@@ -176,16 +176,19 @@ app.post("/compress", (req,res)=>{
     res.status(400).json({msg:"unauthorized"})
   }
   tinify.key = process.env.COMPRESS_API
-  const fileURL = req.body.file;
-  fs.readFile("unoptimized.png", function(err, sourceData) {
-  if (err) throw err;
-  tinify.fromBuffer(sourceData).toBuffer(function(err, resultData) {
+  let items = {}
+  if(req.files === null){
+    res.status(400).json({msg:"No file selected"});
+  }
+  const file = req.files.file;
+
+  tinify.fromBuffer(file.data).toBuffer(function(err, resultData) {
     if (err) throw err;
     items = {image_resource_url:""};
          items.image_resource_url = 'data:image/png;base64,' + arrayBufferToBase64(resultData);
          res.json(items)
   });
-});
+
 } catch (e) {
   res.status(400).json({msg:"something went wrong"})
 }
