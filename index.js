@@ -28,53 +28,43 @@ var details;
 var query;
 
 app.post('/upscale', async (req,res)=>{
-  let items={};
-  if(req.files === null){
-    res.status(400).json({msg:"No file selected"});
-  }
-  const file = req.files.file;
-  console.log(file.data)
-//   console.log(file);
-//   const form = new FormData()
-//   form.append('image_file', file.data, {
-//     filename: file.name,
-//     contentType: file.mimetype,
-//   });
-// form.append('target_width', 2048)
-// form.append('target_height', 2048)
-
-// fetch('https://clipdrop-api.co/image-upscaling/v1/upscale', {
-//   method: 'POST',
-//   headers: {
-//     'x-api-key': `${process.env.CLIP_API_KEY}`,
-//   },
-//   body: form,
-// })
-//   .then(response => response.arrayBuffer())
-//   .then(buffer => {
-//     items = {image_resource_url:""};
-//     items.image_resource_url = 'data:image/png;base64,' + arrayBufferToBase64(buffer);
-//     res.json(items)
-//   })
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_KEY,
-});
-
-const output = await replicate.run(
-  "nightmareai/real-esrgan:42fed1c4974146d4d2414e2be2c5277c7fcf05fcc3a73abf41610695738c1d7b",
-  {
-    input: {
-      image: 'data:image/png;base64,' + arrayBufferToBase64(file.data),
-      scale:8
+  try{
+    if (req.body.secret !== 'qwerty'){
+      res.status(400).json({msg:"unauthorized"})
     }
+    let items={};
+    if(req.files === null){
+      res.status(400).json({msg:"No file selected"});
+    }
+    const file = req.files.file;
+    console.log(file.data)
+
+  const replicate = new Replicate({
+    auth: process.env.REPLICATE_API_KEY,
+  });
+
+  const output = await replicate.run(
+    "nightmareai/real-esrgan:42fed1c4974146d4d2414e2be2c5277c7fcf05fcc3a73abf41610695738c1d7b",
+    {
+      input: {
+        image: 'data:image/png;base64,' + arrayBufferToBase64(file.data),
+        scale:8
+      }
+    }
+  );
+  items = {image_resource_url:""};
+      items.image_resource_url = output;
+      res.json(items)
+  } catch (e) {
+    res.status(400).json({msg:"unauthorized"})
   }
-);
-items = {image_resource_url:""};
-     items.image_resource_url = output;
-     res.json(items)
 })
 
 app.post("/", async (req,res)=>{
+  try{
+    if (req.body.secret !== 'qwerty'){
+      res.status(400).json({msg:"unauthorized"})
+    }
     let items={};
     details = `${req.body.lighting}${req.body.artstyle}${req.body.time}${req.body.color}${req.body.frame}${req.body.inspiration}`
     query = req.body.prompt + details;
@@ -173,9 +163,16 @@ app.post("/", async (req,res)=>{
             res.json(items)
           })
     }
+  } catch (e) {
+    res.status(400).json({msg:"something went wrong"})
+  }
 
 });
 app.post("/compress", (req,res)=>{
+  try{
+  if (req.body.secret !== 'qwerty'){
+    res.status(400).json({msg:"unauthorized"})
+  }
   tinify.key = process.env.COMPRESS_API
   const fileURL = req.body.file;
   fs.readFile("unoptimized.png", function(err, sourceData) {
@@ -187,8 +184,9 @@ app.post("/compress", (req,res)=>{
          res.json(items)
   });
 });
-  // const source = tinify.fromUrl(fileURL);
-  // res.json(source.toFile("optimized.png"));
+} catch (e) {
+  res.status(400).json({msg:"something went wrong"})
+}
 })
 
 app.listen(PORT,()=>{
