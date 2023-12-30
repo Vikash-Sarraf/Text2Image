@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev"
+    "dev": "next dev",
+    "build": "npm install",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
