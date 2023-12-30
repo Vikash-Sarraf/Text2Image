@@ -66,9 +66,11 @@ app.post("/", async (req,res)=>{
       res.status(400).json({msg:"unauthorized"})
     }
     let items={};
-    details = `${req.body.lighting}${req.body.artstyle}${req.body.time}${req.body.color}${req.body.frame}${req.body.inspiration}`
-    query = req.body.prompt + details;
-  //console.log(query)
+    const { lighting, artstyle, time, color, frame, inspiration, prompt } = req.body;
+
+    const details = `${lighting ?? ''}${artstyle ?? ''}${time ?? ''}${color ?? ''}${frame ?? ''}${inspiration ?? ''}`;
+
+    const query = prompt + details;
     provider = req.body.provider;
     resolution = req.body.resolution;
     console.log(query+"\n"+provider+"\n"+resolution)
