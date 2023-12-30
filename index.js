@@ -1,6 +1,7 @@
 import {config} from 'dotenv';
 config();
 
+import fs from "fs";
 import express from "express";
 import axios from 'axios';
 import FormData from 'form-data';
@@ -10,6 +11,7 @@ import { arrayBufferToBase64 } from './util.js';
 import cors from "cors";
 import fileUpload from 'express-fileupload';
 import Replicate from "replicate";
+import tinify from 'tinify';
 
 const app = express();
 app.use(express.json());    //enable parsing middleware for requests
@@ -173,14 +175,22 @@ app.post("/", async (req,res)=>{
     }
 
 });
+app.post("/compress", (req,res)=>{
+  tinify.key = process.env.COMPRESS_API
+  const fileURL = req.body.file;
+  fs.readFile("unoptimized.png", function(err, sourceData) {
+  if (err) throw err;
+  tinify.fromBuffer(sourceData).toBuffer(function(err, resultData) {
+    if (err) throw err;
+    items = {image_resource_url:""};
+         items.image_resource_url = 'data:image/png;base64,' + arrayBufferToBase64(resultData);
+         res.json(items)
+  });
+});
+  // const source = tinify.fromUrl(fileURL);
+  // res.json(source.toFile("optimized.png"));
+})
 
-//app.get("/img",(req,res)=>{
-  //console.log(query)
-  //  res.render("res",{items:items})
-//})
-// app.get("/error",(req,res)=>{
-//     res.render("error");
-// })
 app.listen(PORT,()=>{
     console.log(`Server started on port ${PORT}`)
 })

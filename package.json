@@ -25,6 +25,7 @@
     "node-fetch": "^3.3.2",
     "openai": "^4.0.1",
     "replicate": "^0.17.0",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "tinify": "^1.7.1"
   }
 }
